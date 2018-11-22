@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "postinstall": "tsc",
-    "start": "node dist/index",
+    "start": "node dist/index.js",
     "watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "test": "jest"
   },
