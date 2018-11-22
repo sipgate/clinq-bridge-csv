@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { CsvCrmAdapter } from "../src/CsvAdapter";
+import { CsvCrmAdapter } from "../CsvAdapter";
 
 const MOCK_CSV_DATA = fs.readFileSync(path.resolve(__dirname, 'MOCK_DATA.csv'), 'utf8');
 
