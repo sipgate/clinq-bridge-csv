@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { CsvCrmAdapter } from "../CsvAdapter";
+import { convertContacts, CsvCrmAdapter, parseCsv } from "../CsvAdapter";
 
 const MOCK_CSV_DATA = fs.readFileSync(path.resolve(__dirname, 'MOCK_DATA.csv'), 'utf8');
 
@@ -9,8 +9,7 @@ test("Mock file to contain CSV data", () => {
 });
 
 test("Parsed CSV data to contain user", async () => {
-	const adapter = new CsvCrmAdapter();
-	const parsedCsv = await adapter.parseCsv(MOCK_CSV_DATA);
+	const parsedCsv = await parseCsv(MOCK_CSV_DATA);
 	expect(parsedCsv).toEqual([
 		{
 			id: "1",
@@ -22,9 +21,8 @@ test("Parsed CSV data to contain user", async () => {
 });
 
 test("Converted contact to have valid schema", async () => {
-	const adapter = new CsvCrmAdapter()
-	const parsedCsv = await adapter.parseCsv(MOCK_CSV_DATA);
-	const convertedContacts = adapter.convertContacts(parsedCsv);
+	const parsedCsv = await parseCsv(MOCK_CSV_DATA);
+	const convertedContacts = convertContacts(parsedCsv);
 	expect(convertedContacts).toEqual([
 		{
 			id: "1",
