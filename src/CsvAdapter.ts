@@ -1,27 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { Adapter, Config, Contact, PhoneNumberLabel } from "@clinq/bridge";
 import { CsvContact } from "./model";
-import csv = require("csvtojson");
+import * as csv from "csvtojson";
 
 export const parseCsv = async (data: string): Promise<CsvContact[]> => {
-	return new Promise<CsvContact[]>((resolve, reject) => {
-		const parsed: CsvContact[] = [];
-		csv()
-		.fromString(data)
-		.on("json", row => {
-			parsed.push(row);
-		})
-		.on("done", error => {
-			if(error) {
-				reject(error);
-				return;
-			}
-			resolve(parsed);
-		})
-		.on("error", error => {
-			reject(error);
-		});
-	});
+	const parsed: CsvContact[] = await csv().fromString(data);
+	return parsed;
 };
 
 export const convertContacts = (csvContacts: CsvContact[]): Contact[] => {
@@ -30,10 +14,12 @@ export const convertContacts = (csvContacts: CsvContact[]): Contact[] => {
 		name: csvContact.name,
 		firstName: null,
 		lastName: null,
-		phoneNumbers: [{
-			label: PhoneNumberLabel.WORK,
-			phoneNumber: csvContact.phoneNumber
-		}],
+		phoneNumbers: [
+			{
+				label: PhoneNumberLabel.WORK,
+				phoneNumber: csvContact.phoneNumber
+			}
+		],
 		email: csvContact.email,
 		organization: null,
 		contactUrl: null,
