@@ -1,10 +1,10 @@
 {
-  "name": "clinq-bridge-csv",
+  "name": "clinq-bridge-clinq",
   "version": "1.0.0",
   "private": true,
-  "description": "CLINQ Bridge for CSV data",
+  "description": "CLINQ Bridge for clinq data",
   "main": "dist/index.js",
-  "repository": "git@github.com:sipgate/clinq-bridge-csv.git",
+  "repository": "git@github.com:sipgate/clinq-bridge-clinq.git",
   "contributors": [
     {
       "name": "Peter Mösenthin",
@@ -21,7 +21,6 @@
   "dependencies": {
     "@clinq/bridge": "^9.0.2",
     "axios": "^0.18.0",
-    "csvtojson": "^2.0.8",
     "typescript": "^3.3.4000"
   },
   "devDependencies": {
@@ -30,8 +29,6 @@
     "@types/node": "^11.11.7",
     "fs": "^0.0.1-security",
     "jest": "^24.5.0",
-    "nodemon": "^1.18.10",
-    "path": "^0.12.7",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
     "ts-node-dev": "^1.0.0-pre.32"

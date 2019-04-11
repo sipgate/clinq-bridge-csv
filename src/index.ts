@@ -1,4 +1,4 @@
 import { start } from "@clinq/bridge";
-import { CsvCrmAdapter } from "./CsvAdapter";
+import {  ClinqAdapter } from "./ClinqAdapter";
 
-start(new CsvCrmAdapter());
+start(new ClinqAdapter());
