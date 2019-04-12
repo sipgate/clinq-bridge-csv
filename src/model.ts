@@ -1,5 +1,6 @@
-export interface ApiContact {
- 	id: string,
-	name: string,
-	phoneNumbers: string[];
+export interface CsvContact {
+	id: string;
+	name: string;
+	email: string;
+	phoneNumber: string;
 }
