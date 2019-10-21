@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { Adapter, Config, Contact, PhoneNumberLabel } from "@clinq/bridge";
 import { CsvContact } from "./model";
 import * as csv from "csvtojson";
+import { parsePhoneNumber } from "./util/phone-number";
 
 export const parseCsv = async (data: string): Promise<CsvContact[]> => {
 	const parsed: CsvContact[] = await csv().fromString(data);
@@ -9,22 +10,25 @@ export const parseCsv = async (data: string): Promise<CsvContact[]> => {
 };
 
 export const convertContacts = (csvContacts: CsvContact[]): Contact[] => {
-	return csvContacts.map(csvContact => ({
-		id: csvContact.id,
-		name: csvContact.name,
-		firstName: null,
-		lastName: null,
-		phoneNumbers: [
-			{
-				label: PhoneNumberLabel.WORK,
-				phoneNumber: csvContact.phoneNumber
-			}
-		],
-		email: csvContact.email,
-		organization: null,
-		contactUrl: null,
-		avatarUrl: null
-	}));
+	return csvContacts.map(csvContact => {
+		const parsedPhoneNumber = parsePhoneNumber(csvContact.phoneNumber);
+		return {
+			id: csvContact.id,
+			name: csvContact.name,
+			firstName: null,
+			lastName: null,
+			phoneNumbers: [
+				{
+					label: PhoneNumberLabel.WORK,
+					phoneNumber: parsedPhoneNumber.e164
+				}
+			],
+			email: csvContact.email,
+			organization: null,
+			contactUrl: null,
+			avatarUrl: null
+		}
+	});
 };
 
 export class CsvCrmAdapter implements Adapter {
