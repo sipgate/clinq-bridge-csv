@@ -17,6 +17,7 @@
 	],
 	"license": "Apache-2.0",
 	"scripts": {
+		"postinstall": "tsc",
 		"build": "tsc",
 		"start": "ts-node-dev --respawn src/index.ts",
 		"test": "jest"
