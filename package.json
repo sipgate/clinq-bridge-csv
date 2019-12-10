@@ -9,13 +9,16 @@
 		{
 			"name": "Peter Mösenthin",
 			"email": "peter.moesenthin@gmail.com"
+		},
+		{
+			"name": "Benjamin Kluck",
+			"email": "ben@fug.lu"
 		}
 	],
 	"license": "Apache-2.0",
 	"scripts": {
-		"postinstall": "tsc",
-		"start": "node dist/index.js",
-		"watch": "ts-node-dev --respawn src/index.ts",
+		"build": "tsc",
+		"start": "ts-node-dev --respawn src/index.ts",
 		"test": "jest"
 	},
 	"dependencies": {
