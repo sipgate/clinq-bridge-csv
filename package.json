@@ -17,10 +17,9 @@
 	],
 	"license": "Apache-2.0",
 	"scripts": {
-		"postinstall": "tsc",
 		"start": "ts-node-dev --respawn src/index.ts",
 		"test": "jest",
-		"gcp-build": "tsc"
+		"build": "tsc"
 	},
 	"dependencies": {
 		"@clinq/bridge": "^10.1.2",
