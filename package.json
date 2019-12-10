@@ -19,7 +19,8 @@
 	"scripts": {
 		"start": "ts-node-dev --respawn src/index.ts",
 		"test": "jest",
-		"build": "tsc"
+		"build": "tsc",
+		"gcp-build": "tsc"
 	},
 	"dependencies": {
 		"@clinq/bridge": "^10.1.2",
