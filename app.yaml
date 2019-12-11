@@ -1,10 +1,9 @@
-runtime: nodejs12
 service: clinq-bridge-csv
-entrypoint: node dist/index.js
+runtime: custom
+env: flex
 
 liveness_check:
   path: "/health"
-  check_interval_sec: 30
-  timeout_sec: 4
-  failure_threshold: 2
-  success_threshold: 2
+
+readiness_check:
+  path: "/health"
