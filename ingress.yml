@@ -8,4 +8,4 @@ metadata:
 spec:
   backend:
     serviceName: clinq-bridge-csv
-    servicePort: 8080
+    servicePort: 80
