@@ -1,11 +1,11 @@
-apiVersion: "extensions/v1beta1"
-kind: "Ingress"
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: "clinq-bridge-csv"
-  namespace: "default"
+  name: clinq-bridge-csv
+  namespace: default
   annotations:
-    networking.gke.io/managed-certificates: "clinq-bridge-csv"
+    networking.gke.io/managed-certificates: clinq-bridge-csv
 spec:
   backend:
-    serviceName: "clinq-bridge-csv"
+    serviceName: clinq-bridge-csv
     servicePort: 80
