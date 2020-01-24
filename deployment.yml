@@ -4,7 +4,10 @@ metadata:
   name: clinq-bridge-csv
 spec:
   replicas: 3
-  strategy: rollingUpdate
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   minReadySeconds: 5
   template:
     metadata:
