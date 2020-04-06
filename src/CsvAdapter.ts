@@ -1,7 +1,8 @@
-import axios, { AxiosResponse } from "axios";
 import { Adapter, Config, Contact, PhoneNumberLabel } from "@clinq/bridge";
-import { CsvContact } from "./model";
+import axios from "axios";
+import * as eol from "eol";
 import * as csv from "csvtojson";
+import { CsvContact } from "./model";
 import { parsePhoneNumber } from "./util/phone-number";
 
 export const parseCsv = async (data: string): Promise<CsvContact[]> => {
@@ -10,7 +11,7 @@ export const parseCsv = async (data: string): Promise<CsvContact[]> => {
 };
 
 export const convertContacts = (csvContacts: CsvContact[]): Contact[] => {
-	return csvContacts.map(csvContact => {
+	return csvContacts.map((csvContact) => {
 		const parsedPhoneNumber = parsePhoneNumber(csvContact.phoneNumber);
 		return {
 			id: csvContact.id,
@@ -20,21 +21,21 @@ export const convertContacts = (csvContacts: CsvContact[]): Contact[] => {
 			phoneNumbers: [
 				{
 					label: PhoneNumberLabel.WORK,
-					phoneNumber: parsedPhoneNumber.e164
-				}
+					phoneNumber: parsedPhoneNumber.e164,
+				},
 			],
-			email: csvContact.email,
+			email: csvContact.email || null,
 			organization: null,
 			contactUrl: null,
-			avatarUrl: null
-		}
+			avatarUrl: null,
+		};
 	});
 };
 
 export class CsvCrmAdapter implements Adapter {
 	public async getContacts(config: Config): Promise<Contact[]> {
-		const csvResponse: AxiosResponse = await axios.get(config.apiUrl);
-		const parsedCsv = await parseCsv(csvResponse.data);
+		const csvResponse = await axios.get(config.apiUrl);
+		const parsedCsv = await parseCsv(eol.auto(csvResponse.data));
 		return convertContacts(parsedCsv);
 	}
 }
