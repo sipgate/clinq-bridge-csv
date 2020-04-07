@@ -14,7 +14,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"@clinq/bridge": "^11.1.2",
+		"@clinq/bridge": "^11.2.0",
 		"@types/express": "^4.17.4",
 		"@types/google-libphonenumber": "^7.4.17",
 		"@types/jest": "^25.2.1",
