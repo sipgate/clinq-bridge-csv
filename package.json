@@ -8,7 +8,6 @@
 	"author": "CLINQ hello@clinq.com",
 	"license": "Apache-2.0",
 	"scripts": {
-		"postinstall": "npm run build",
 		"start": "ts-node-dev --respawn src/index.ts",
 		"test": "jest",
 		"build": "tsc"
